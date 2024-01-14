@@ -1,23 +1,19 @@
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
 import { login } from '../../redux/auth/operations';
 
-
-
 const LoginForm = () => {
-
-const dispatch = useDispatch()
-
-const handleLogin = event => {
-  event.preventDefault()
-  const email = event.target.email.value;
+  const dispatch = useDispatch();
+  const handleLogin = event => {
+    event.preventDefault();
+    const email = event.target.email.value;
     const password = event.target.password.value;
-    dispatch (
+    dispatch(
       login({
         email,
         password,
       })
-    )
-}
+    );
+  };
 
   return (
     <div>

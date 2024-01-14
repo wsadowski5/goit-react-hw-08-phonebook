@@ -6,14 +6,14 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
   const id = uuidv4();
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.target;
-    dispatch(addContact({ id, name, phone }));
+    dispatch(addContact({ id, name, number }));
     form.reset();
   };
 
@@ -22,8 +22,8 @@ export const ContactForm = () => {
     setName(name);
   };
   const handleChangeNumber = e => {
-    const phone = e.target.value;
-    setPhone(phone);
+    const number = e.target.value;
+    setNumber(number);
   };
 
   return (
@@ -46,7 +46,7 @@ export const ContactForm = () => {
           <input
             type="tel"
             name="phone"
-            value={phone}
+            value={number}
             // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone phone must be digits and can contain spaces, dashes, parentheses and can start with +"
             required

@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectContacts, selectFilter } from '../../redux/contacts/selectors';
-import { fetchContacts, deleteContact } from '../../redux/contacts/operations';
-
+import { fetchContacts } from '../../redux/contacts/operations';
+import { ContactListItem } from './ContactListItem';
 import css from './ContactsList.module.css';
 
 export const ContactsList = () => {
-  const { contacts, isLoading, error } = useSelector(selectContacts);
+  const { contacts, isLoading } = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const filter = useSelector(selectFilter);
@@ -21,28 +21,24 @@ export const ContactsList = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  const handleDelete = contact =>   dispatch(deleteContact(contact.id))
-  return (
-    <div className={css.contactListWrapper}>
-      {error && <p>{error}</p>}
 
+  
+  
+  return (
+    <div className={css.wraperContactList}>
       {isLoading ? (
-        <div>Loading contacts...</div>
+        <div>Loading...</div>
       ) : (
-        <ul className={css.contactsList}>
-          {filteredContacts.map(contact => (
-            <li className={css.contactListItem} key={contact.id}>
-              {' '}
-              <span>
-                {contact.name}: {contact.phone}{' '}
-              </span>
-              <button type="submit" onClick={() => handleDelete(contact)}>
-                Delete
-              </button>
-            </li>
+        <ul className={css.contactList}>
+          {filteredContacts.map((contact, id) => (
+            <ContactListItem key={id} contact={contact} />
           ))}
         </ul>
       )}
     </div>
   );
+  
+  
+  
+
 };

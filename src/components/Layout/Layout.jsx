@@ -1,18 +1,18 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useAuth } from 'hooks/useAuth';
 import { Outlet, NavLink } from 'react-router-dom';
-import { selectIsLoggedIn, selectUserName } from '../../redux/auth/selectors';
+
 import { logout } from '../../redux/auth/operations';
 
 const LoggedInNav = () => {
-  const userName = useSelector(selectUserName);
+  const { user } = useAuth();
   const dispatch = useDispatch();
   const handleLogOut = () => dispatch(logout());
-
   return (
     <div>
       <NavLink to="/"> Home </NavLink>
       <NavLink to="/contacts"> Contacts</NavLink>
-      Welcome {userName}
+      Welcome {user}
       <button onClick={handleLogOut}> Logout</button>
     </div>
   );
@@ -29,8 +29,7 @@ const LoggedOutNav = () => {
 };
 
 const Layout = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-
+  const { isLoggedIn } = useAuth();
   return (
     <div>
       {isLoggedIn ? <LoggedInNav /> : <LoggedOutNav />}
