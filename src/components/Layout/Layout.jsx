@@ -4,16 +4,19 @@ import { Outlet, NavLink } from 'react-router-dom';
 
 import { logout } from '../../redux/auth/operations';
 
+import Tab from '@mui/material/Tab';
+import { Button } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
 const LoggedInNav = () => {
   const { user } = useAuth();
   const dispatch = useDispatch();
   const handleLogOut = () => dispatch(logout());
   return (
     <div>
-      <NavLink to="/"> Home </NavLink>
-      <NavLink to="/contacts"> Contacts</NavLink>
+      <Tab LinkComponent={NavLink} to="/" label="Home" />
+      <Tab LinkComponent={NavLink} to="/contacts" label="Contacts" />
       Welcome {user}
-      <button onClick={handleLogOut}> Logout</button>
+      <Button onClick={handleLogOut}> Logout</Button>
     </div>
   );
 };
@@ -21,9 +24,9 @@ const LoggedInNav = () => {
 const LoggedOutNav = () => {
   return (
     <div>
-      <NavLink to="/"> Home </NavLink>
-      <NavLink to="/register"> Register </NavLink>
-      <NavLink to="/login"> Login </NavLink>
+      <Tab LinkComponent={NavLink} to="/" label="Home" />
+      <Tab LinkComponent={NavLink} to="/register" label="Register" />
+      <Tab LinkComponent={NavLink} to="/login" label="Login" />
     </div>
   );
 };
@@ -31,10 +34,15 @@ const LoggedOutNav = () => {
 const Layout = () => {
   const { isLoggedIn } = useAuth();
   return (
-    <div>
+    <Grid
+    container
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+      marginTop={2}>
       {isLoggedIn ? <LoggedInNav /> : <LoggedOutNav />}
       <Outlet />
-    </div>
+    </Grid>
   );
 };
 

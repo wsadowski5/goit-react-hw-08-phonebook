@@ -2,18 +2,26 @@ import { ContactsList } from 'components/ContactsList/ContactsList';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { Filter } from 'components/Filter/Filter';
 
-import css from 'components/App.module.css';
+import Grid from '@mui/material/Unstable_Grid2';
 
+import { Typography } from '@mui/material';
 const Contacts = () => {
-
   return (
-    <div className={css.container}>
-      <h1 className={css.containerHeader}>Phonebook</h1>
-      <h2>Add contact</h2>
+    <Grid
+      container
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+      marginTop={10}
+    >
+      <Typography variant="h2">Contacts</Typography>
+
+
       <ContactForm />
       <Filter />
       <ContactsList />
-    </div>
+    </Grid>
+
   );
 };
 

@@ -1,4 +1,4 @@
-.container{
+/* .container{
     margin: 50px auto;
     padding: 50px;
     max-width: 600px;
@@ -20,22 +20,4 @@
     line-height: 2em;
     background-color: rgb(100, 0, 0, 0.1);
     box-shadow: 0px 0px 8px 0px rgba(66, 68, 90, 1);
-  }
-
-  input{
-    width: 200px;
-    padding: 8px;
-    outline: none;
-    background-color: rgb(58, 58, 58);
-    color: rgb(236, 233, 233);
-    border-radius: 5px;
-  }
-
-  button{
-    
-    background-color: rgb(58, 58, 58);
-    color: rgb(236, 233, 233);
-    border-radius: 5px;
-    padding: 8px;
-    font-size: 18px;
-  }
+  } */

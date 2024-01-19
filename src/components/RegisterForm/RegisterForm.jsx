@@ -1,12 +1,13 @@
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operations';
 
-const RegisterForm = () => {
+import { Button, TextField } from '@mui/material';
 
+const RegisterForm = () => {
   const dispatch = useDispatch();
 
   const handleRegistration = event => {
-    event.preventDefault()
+    event.preventDefault();
     const name = event.target.username.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
@@ -22,13 +23,29 @@ const RegisterForm = () => {
   return (
     <div>
       <form onSubmit={handleRegistration}>
-        <label htmlFor="username">Username</label>
-        <input name="username" id="username"></input>
-        <label htmlFor="registration-email">Email</label>
-        <input name="email" type="email" id="login-email"></input>
-        <label htmlFor="registration-password">Password</label>
-        <input name="password" type="password" id="login-password"></input>
-        <button type="submit">Register</button>
+        <TextField
+          label="USERNAME"
+          variant="outlined"
+          name="username"
+          id="username"
+        ></TextField>
+
+        <TextField
+          label="EMAIL"
+          variant="outlined"
+          name="email"
+          type="email"
+          id="login-email"
+        ></TextField>
+
+        <TextField
+          label="PASSWORD"
+          variant="outlined"
+          name="password"
+          type="password"
+          id="login-password"
+        ></TextField>
+        <Button type="submit">Register</Button>
       </form>
     </div>
   );

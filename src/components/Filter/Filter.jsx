@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
-import css from './Filter.module.css';
-
+import { TextField } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
 import { setFilter } from '../../redux/contacts/filterSlice';
 
 export const Filter = () => {
@@ -11,11 +11,17 @@ export const Filter = () => {
   };
 
   return (
-    <div className={css.filter}>
-      <label className={css.filterItem}>
-        <span>Find contacts by name</span>
-        <input type="text" name="filter" onChange={handleChange} />
-      </label>
-    </div>
+    <Grid
+    margin={4} >
+      
+        <TextField
+          label="FILTER CONTACTS"
+          variant="outlined"
+          type="text"
+          name="filter"
+          onChange={handleChange}
+        />
+    
+    </Grid>
   );
 };

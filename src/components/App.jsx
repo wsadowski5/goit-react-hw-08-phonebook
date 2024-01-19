@@ -3,7 +3,6 @@ import Layout from 'components/Layout/Layout';
 import Home from 'pages/Home/Home';
 import Register from 'pages/Register/Register';
 import Login from 'pages/Login/Login';
-import NotFound from 'pages/NotFound/NotFound';
 import Contacts from 'pages/Contacts/Contacts';
 import { RestrictedRoute } from './RestrictedRoute/RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
@@ -45,7 +44,7 @@ export const App = () => {
             <PrivateRoute redirectTo="/login" component={<Contacts />} />
           }
         />
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<Home />} />
       </Route>
     </Routes>
   );

@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/contacts/operations';
 import { v4 as uuidv4 } from 'uuid';
 
+import { Button, TextField } from '@mui/material';
+
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -12,9 +14,10 @@ export const ContactForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const form = e.target;
     dispatch(addContact({ id, name, number }));
-    form.reset();
+    setName('');
+    setNumber('');
+
   };
 
   const handleChangeName = e => {
@@ -30,8 +33,9 @@ export const ContactForm = () => {
     <div className={css.contactFormWrapper}>
       <form onSubmit={handleSubmit} className={css.contactForm}>
         <label className={css.contactFormItem}>
-          <span>Name</span>
-          <input
+          <TextField
+            label="NAME"
+            variant="outlined"
             type="text"
             name="name"
             value={name}
@@ -42,10 +46,11 @@ export const ContactForm = () => {
           />
         </label>
         <label className={css.contactFormItem}>
-          <span>Number</span>
-          <input
+          <TextField
+            label="NUMBER"
+            variant="outlined"
             type="tel"
-            name="phone"
+            name="number"
             value={number}
             // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone phone must be digits and can contain spaces, dashes, parentheses and can start with +"
@@ -53,7 +58,7 @@ export const ContactForm = () => {
             onChange={handleChangeNumber}
           />
         </label>
-        <button type="submit">Add contact</button>
+        <Button type="submit">Add contact</Button>
       </form>
     </div>
   );

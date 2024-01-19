@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteContact, editContact } from '../../redux/contacts/operations';
+import { Button } from '@mui/material';
+
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import Input from '@mui/material/Input';
 
 export const ContactListItem = ({ contact }) => {
   const [isEdit, setIsEdit] = useState(false);
@@ -21,53 +26,59 @@ export const ContactListItem = ({ contact }) => {
     }
   };
 
-
-  const handleDelete = contact => dispatch(deleteContact(contact.id))
+  const handleDelete = contact => dispatch(deleteContact(contact.id));
 
   const handleEdit = () => setIsEdit(true);
 
   const handleSave = () => {
     setIsEdit(false);
-  
-    dispatch(editContact({ contactId: contact.id, updatedContact: { name, number } }));
 
+    dispatch(
+      editContact({ contactId: contact.id, updatedContact: { name, number } })
+    );
   };
 
   return (
-    <li>
+    <div>
       {isEdit ? (
         <>
-          <label>
-            Name
-            <input
-              onChange={handleChange} name="name" type="text" value={name}
+          <ListItem disablePadding alignItems="center">
+            <Input
+              fullWidth
+              placeholder="NAME"
+              name="name"
+              onChange={handleChange}
             />
-          </label>
-          <label>
-            Number
-            <input
-              onChange={handleChange} name="number" type="text" value={number}
+            <Input
+              fullWidth
+              placeholder="PHONE"
+              name="number"
+              onChange={handleChange}
             />
-          </label>
+            <Button type="button" onClick={handleSave}>
+              Save
+            </Button>
+
+            <Button type="submit" onClick={() => handleDelete(contact)}>
+              Delete
+            </Button>
+          </ListItem>
         </>
       ) : (
         <>
-          <span>{contact.name}</span>
-          <span>{contact.number}</span>
+          <ListItem disablePadding>
+            <ListItemText
+              primary={`NAME: ${contact.name} PHONE: ${contact.number}`}
+            />
+            <Button type="button" onClick={handleEdit}>
+              Edit
+            </Button>
+            <Button type="submit" onClick={() => handleDelete(contact)}>
+              Delete
+            </Button>
+          </ListItem>
         </>
       )}
-
-      <button type="button" onClick={handleEdit}>
-        Edit
-      </button>
-
-      <button type="button" onClick={handleSave}>
-        Save
-      </button>
-
-       <button type="submit" onClick={() => handleDelete(contact)}>
-        Delete
-      </button>
-    </li>
+    </div>
   );
 };
