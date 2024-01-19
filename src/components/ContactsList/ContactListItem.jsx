@@ -48,12 +48,14 @@ export const ContactListItem = ({ contact }) => {
               placeholder="NAME"
               name="name"
               onChange={handleChange}
+              value={name}
             />
             <Input
               fullWidth
               placeholder="PHONE"
               name="number"
               onChange={handleChange}
+              value={number}
             />
             <Button type="button" onClick={handleSave}>
               Save
@@ -67,8 +69,8 @@ export const ContactListItem = ({ contact }) => {
       ) : (
         <>
           <ListItem disablePadding>
-            <ListItemText
-              primary={`NAME: ${contact.name} PHONE: ${contact.number}`}
+            <ListItemText fullWidth
+              primary={` ${contact.name} : ${contact.number}`}
             />
             <Button type="button" onClick={handleEdit}>
               Edit
